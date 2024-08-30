@@ -1,0 +1,93 @@
+FlipFit
+
+Design a backend system for a new enterprise application that Flipkart is launching, FlipFit.
+Flipkart is partnering up with gyms across Bangalore to enter into the fitness space. For the Beta launch the requirements are as follows:
+
+
+There are multiple centers in Bangalore. We can expand to multiple cities across and beyond India.
+Each center has n slots of an hour each. For eg the Bellandur center has only 6 slots - 3 in the morning of an hour each from 6 am to 9 am and similarly 3 	in the evening from 6 pm to 9 pm. All the centers might/might not be open 7 days a week.
+Each slot at a center can have m possible workout variations - Weights, Cardio, Yoga, Swimming etc. There could be newer workouts added at center/slot level in the future.
+The number of seats in each workout at each time-slot for a given center is fixed.
+Handle concurrent blocking of workout slots and ensure no overbooking or double booking of slots
+It should be easy to change the underlying data storage mechanism as data scale increases without changing various parts of the application
+For simplicity’s sake you can assume that the workout info will be entered by the Admin only once.
+User can perform the following operations:
+Register onto the platform
+View the workouts availability/unavailability for a particular day at a center
+Book a workout for a user if seats are available in that time slot at that center
+View his/her plan basis day as input
+Cancel his/her workout
+Bonus:
+Return the nearest time slot for the same date/workout/center combination, keeping in mind his other booked slots
+Once the seats get filled up, there is a waiting list with a fixed number of trainees. Also notify waitlisted candidates that he/she has been promoted
+
+Test cases:
+
+addCenter(centerName,cityName,daysClosed,numberOfSlot)
+addWorkOutType(centerName,name)
+addSlots(centerName,workoutType,startTime,numberOfseat)
+
+
+registerUser(name,age,city)
+getAvailableSlot(centerName,date)
+BookSlot(centerName,userId,slotId)
+viewUserBooking(userId,date)
+cancelSlot(centerName,userId,slotId)
+
+recommendSlot(centerName,userId,date,workoutType)   #Bonus
+addToWaitList(centerName,userId,slotId)  #Bonus
+
+
+
+Sample Test cases:
+
+addCenter("bellandur","bangalore",["monday,"sunday"], 5)
+addWorkOutType("bellandur","weights")
+addWorkOutType("bellandur","cardio")
+addWorkOutType("bellandur","yoga")
+addSlots("bellandur","weights","6:00","2")
+addSlots("bellandur","Yoga","8:00","1")  //time in 24hr format
+
+
+registerUser("Vivek","16","bangalore")
+registerUser("Pavan","20","bangalore")
+registerUser("Varun","22","bangalore")
+
+getAvailableSlot("bellandur","28-05-2021")
+Output format:
+slotId,centerName,workouttype,slotTime,numberOfAvailableSeat
+>> 1,bellandur,weights,6:00,2
+>> 2,bellandur,Yoga,8:00,1
+
+
+BookSlot("bellandur","vivek",1)
+
+viewUserBooking("vivek","28-05-2021")
+Output format:
+slotId,centerName,workouttype,slotTime
+>> 1,bellandur,weights,6:00
+
+
+cancelSlot("bellandur","vivek",1)
+
+viewUserBooking("vivek","28-05-2021")
+>> No booking for the date
+
+
+Guidelines:
+Time: 150  mins.
+Write modular, clean and demoable code (Test cases or runtime execution).
+A driver program/main class/test case is needed to test out the code by the evaluator with multiple test cases. But do not spend too much time in the input parsing. Keep it as simple as possible.
+Please handle concurrency wherever applicable.
+Evaluation criteria:  Demoable & functionally correct code, Code readability, Proper Entity modelling, Modularity & Extensibility, Separation of concerns, Abstractions, Exception Handling, Code comments. Use design patterns wherever applicable
+You are not allowed to use any external databases like MySQL. Use only in-memory data structures.
+No need to create any UX or any HTTP API. It should be a standalone application.
+Please focus on the Bonus Features only after ensuring the required features are complete and demoable.
+
+
+
+
+
+
+
+CODE Upload Form : https://forms.gle/9LRh4poSymr78mar5
